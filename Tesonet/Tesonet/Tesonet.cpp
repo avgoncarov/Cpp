@@ -1,34 +1,90 @@
-// reading a text file
 #include <iostream>
-#include <fstream>
-#include <string>
-#define STEPS 128 //#of iterations
-#define GRIDSIZE 512.0 //size of canvas
-#define N 512
-#define MAXDIST 3
+#include <cstdlib>
+#include <time.h>
 
-int randomInteger(int n) 
-int cells[w][h]
+using namespace std;
 
-int main(void)()
-{
-    int i, j, k, ii, jj, dist, color;
-        //int cells[CELLS] = { 0 }; //cell contents at time t
-        int old[CELLS]; //cell contents at time t-1
+int main(){
 
-        cells[CELLS / 2] = 1; //init one cell to black
+    //Number of rows and columns
+    const char malware = '*';
+    const char network = '.';
+    const char firewall = 'f'
+    const char healthyserver = 'o'
+    const char infectedserver = 'x'
+    const int w = 10;
+    const int h = 10;
+    char world[w][h];
+    //char life1[rows][cols];
 
-        //simulate cellular automata
-        for (k = 1; k < STEPS; t++) {
-            //output current row in turtle graphics
-            for (i = 0; i < CELLS; i++) {
-                if (cells[i] == 1) {
+    int ans=0;
 
+
+    //create initial generation randomly
+
+    srand (time(NULL));
+    int cell;
+
+
+    for(int r=0; r<w; r++){
+
+        for(int c=0; c<h; c++){
+
+            cell= rand()%10;
+            if(cell >= 5){
+                world[r][c] = malware;
+                }
+            else {
+                world[r][c] = dead;
+            }
+
+        }
+    }
+
+
+    for(int r=0; r < w; r++){
+        for(int c = 0; c<h;c++){
+            cout << world[r][c] << " ";
+        }
+        cout << endl;
+    }
+
+    for(int k=0; k <10;k++){
+        for(int r=0; r < w; r++){
+            for(int c=0;c<h;c++){
+                if(world[r][c] == malware){
+                    if((c-1) >=1 && (world[r][c-1] == malware))
+                        ans++;
+
+                    if(ans==2 || ans < 5)
+                        world[r][c]= malware;
+                    if(ans>3)
+                        world[r][c]= dead;
+                    if(ans<2)
+                        world[r][c]=live;
+
+                }
+
+
+                    }
                 }
             }
         }
-        return 0;
+
+        for(int r=0; r<w; r++){
+            for(int c=0; c< h; c++){
+                world[r][c]=life1[r][c];
+            }
+        }
+
+        for(int r=0; r<w;r++){
+            for(int c =0; c<h;c++){
+                cout << world[r][c] << " ";
+
+            }
+            cout<<endl;
+        }
+    }
+
+    return 0;
 }
-
-
-
